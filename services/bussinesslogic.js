@@ -1,11 +1,4 @@
-//Function for SIP Delay...
-    const CalculateSip = (monthlyinvestment,investmentperiod,rateofreturn,delay) =>{
-      var timeduration =(investmentperiod)*12;
-      var rate =(rateofreturn)/12;
-      var timedurationafterdelay = timeduration-delay;
-     
-      //SIP for current period time duration..
-      var starttoday = sipgrowth(monthlyinvestment,timeduration,rate); 
+var starttoday = sipgrowth(monthlyinvestment,timeduration,rate); 
       
       //SIP for period time durationafterdelay..
       var delayedstart = sipgrowth(monthlyinvestment,timedurationafterdelay,rate); 
@@ -15,9 +8,9 @@
       
       //Return sip information in an object form...
       var sip = {
-        starttoday : Math.round(starttoday),
+        startfromtoday : Math.round(starttoday),
         delayedstart: Math.round(delayedstart),
-        loss : Math.round(loss)
+        lossfromdelay : Math.round(loss)
       }
       return sip;
 
