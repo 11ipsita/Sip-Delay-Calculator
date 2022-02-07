@@ -7,5 +7,5 @@ const calculatorcontrol = require('../controller/calculatorController');
 router.use(bodyparser.json());  //For body-parser...
 
 //Sending post request to server and performing action from controller..
-router.post("/", calculatorcontrol);
+router.post("/SipDelayCalculator", calculatorcontrol);
 module.exports=router; 
