@@ -1,18 +1,47 @@
-var starttoday = sipgrowth(monthlyinvestment,timeduration,rate); 
+ //Function for calling SIP Delay...
+    const CalculateSip = (BodydData) =>{
+
+      var monthlyinvestment = BodydData.monthlyinvestment;
+      var investmentperiod = BodydData.investmentperiod;
+      var rateofreturn = BodydData.rateofreturn;
+      var delay = BodydData.delay;
+
+
+      var timeduration =(investmentperiod)*12;
+      var rate =(rateofreturn)/12;
+      var timedurationafterdelay = timeduration-delay;
+     
+      //SIP for current period time duration..
+      var sipGrowthToday = sipgrowth(monthlyinvestment,timeduration,rate); 
       
       //SIP for period time durationafterdelay..
-      var delayedstart = sipgrowth(monthlyinvestment,timedurationafterdelay,rate); 
+      var sipGrowthDelay = sipgrowth(monthlyinvestment,timedurationafterdelay,rate); 
       
       //National Loss Cause...
-      var loss = starttoday-delayedstart; 
+      var lossFromDelay = sipGrowthToday-sipGrowthDelay; 
       
       //Return sip information in an object form...
-      var sip = {
-        startfromtoday : Math.round(starttoday),
-        delayedstart: Math.round(delayedstart),
-        lossfromdelay : Math.round(loss)
-      }
-      return sip;
+      var Data = {
+        sipGrowthToday: sipGrowthToday,
+        sipGrowthDelay: sipGrowthDelay,
+        lossFromDelay: lossFromDelay
+    }
+  //this is array of objects where the objects are for the showing result in graph
+    let Graph = [{
+        name: "StartToday",             //name is for x-axis
+        amount: sipGrowthToday             //amount is for y-axis
+    },
+    {
+        name: "DelayedStart",
+        amount: sipGrowthToday
+    },
+    {
+        name: "Loss",
+        amount: lossFromDelay
+    }]
+
+
+    return { Data,Graph };   
 
 }
 
@@ -30,4 +59,6 @@ function sipgrowth(monthlyinvestment,timeduration,rateofreturn) {
 }
 
 
-module.exports=CalculateSip;
+module.exports={
+  CalculateSip
+};
