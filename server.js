@@ -6,15 +6,14 @@ const cors= require('cors');
 //It requires the post request from the calculatorRouter file
 const sipdelaycalculate=require('./routes/calculatorRouter');
 
-app.use('/',sipdelaycalculate);
 app.use(cors());
 
 
 app.use(express.json()); //Parsing the body in middleware...
 
-app.use('/sipdelaycalculate',sipdelaycalculate);  //Using the post api from router... 
+app.use('',sipdelaycalculate);  //Using the post api from router... 
 
 
 app.listen(port, ()=>{
-    console.log(`App is listening at http://localhost:${port}`);
+    console.log(`Sip delay Calculator started at http://localhost:${port}`);
 });
