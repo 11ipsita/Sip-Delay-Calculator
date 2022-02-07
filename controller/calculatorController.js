@@ -5,7 +5,7 @@ const Calculatecontrol = (req,res)=>{
     const{monthlyinvestment,investmentperiod,rateofreturn,delay}=req.body;
     //Validations for user input...
     if(!(monthlyinvestment >= 0)){
-        res.send("Invalid monthlyinvestment");
+        res.send("Invalid monthlyinvestment"); 
     }else if(!(investmentperiod > 0)){
         res.send("Invalid investmentperiod");
     }else if(!(rateofreturn > 0)){
@@ -13,15 +13,13 @@ const Calculatecontrol = (req,res)=>{
     }else if(!(delay > 0)){
         res.send("Invalid delay");
     }else {
-        var info = servicelogic(monthlyinvestment,investmentperiod,rateofreturn,delay);
-     
-    //Result string...    
-    /*res.send(` Delay of ${delay} months in starting your SIP will cause a national Loss of: Rs.${info.loss} in the final value of your investment. 
-      If you start investing from today then the final value is Rs.${info.starttoday}.
-      If you start investing after ${delay} months then the final value is Rs.${info.delayedstart}.` ); */
+        var info = servicelogic.CalculateSip({monthlyinvestment, investmentperiod, rateofreturn, delay});
 
-      var finalresult = `If you start your investment from today,the final value will be Rs.${info.startfromtoday}.\nIf you start your investment after ${delay} months,the final value will be Rs.${info.delayedstart}.\nAnd it will cause notional loss of : Rs.${info.lossfromdelay} in the final value of your investment.`
-      res.send(finalresult);
+        res.send(info);
+        
+        /*var finalresult = `If you start your investment from today,the final value will be Rs.${info.startfromtoday}.\nIf you start your investment after ${delay} months,the final value will be Rs.${info.delayedstart}.\nAnd it will cause notional loss of : Rs.${info.lossfromdelay} in the final value of your investment.`
+          res.send(finalresult);*/
+
     }    
 }
 
