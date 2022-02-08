@@ -3,9 +3,9 @@ const router = express.Router();
 const bodyparser=require('body-parser');
 
 
-const calculatorcontrol = require('../controller/calculatorController');
+const calculatorcontroller= require('../controller/calculatorController');
 router.use(bodyparser.json());  //For body-parser...
 
 //Sending post request to server and performing action from controller..
-router.post("/SipDelayCalculator", calculatorcontrol);
+router.post("/SipDelayCalculator", calculatorcontroller.Calculatecontrol);
 module.exports=router; 
