@@ -25,7 +25,7 @@
         sipGrowthToday: sipGrowthToday,
         sipGrowthDelay: sipGrowthDelay,
         lossFromDelay: lossFromDelay,
-        Delay: delay
+        DelayMonths: delay
     }
   //this is array of objects where the objects are for the showing result in graph
     let Graph = [{
